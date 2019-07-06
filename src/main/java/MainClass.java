@@ -15,8 +15,10 @@ public class MainClass {
         driver.manage().window().maximize();
 
         driver.get("https://en.wikipedia.org/");
-
+        driver.findElement(By.xpath("//input[@name='search']")).sendKeys("Selenium WebDriver");
         driver.findElement(By.xpath("//input[@id='searchButton']")).click();
+        System.out.println(driver.findElement(By.xpath("(//input[@name='search'])[1]")).getAttribute("value"));
+        driver.findElement(By.xpath("(//input[@name='search'])[1]")).clear();
 
 //        driver.quit();
 
