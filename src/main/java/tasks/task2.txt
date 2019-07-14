@@ -1,0 +1,35 @@
+Добавь несколько скриптов:
+ ⁃ Логаут после входа +
+ ⁃ Вход с некорректным логином
+ ⁃ Вход с некорректным паролем
+ ⁃ Вход с пустым полем Логин
+ ⁃ Вход с пустым полем Пароль
+Для негативных сценариев (неуспешный вход) добавь ожидание сообщения об ошибке входа.
+Для сценария на корректный логин добавь ожидание что после загрузки отображаются
+кнопки/ссылки для авторизованного пользователя (ссылка на профиль, кнопка уведомлений,
+кнопка нотификаций, ссылка на чаты, ссылка на страницу с черновиками)
+
+Ожидания реализуй используя WebDriverWait
+https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/support/ui/WebDriverWait.html
+
+try {
+ scenarios.login(userName, password);
+} catch (WebDriverException) {
+ println(«Login scenario failed»);
+}
+try {
+ scenarios.logout(userName, password);
+}  catch (WebDriverException) {
+ println(«Login scenario failed»);
+}
+….
+Конечно, последовательность вызовов можно оптимизировать используя функциональные интерфейсы Java:
+https://gist.github.com/vasiliy-l/c6279adf280fee8c01b84dfcf18ad33d
+
+В дополнение, помимо Хрома можно настроить запуск используя Firefox и Edge/Safari
+Например, можно запускать последовательно все тесты для каждого браузера. Или сделать считывание
+системной переменной:
+String currentBrowser = System.getProperty("browsers", "chrome")
+switch (currentBrowser) {
+…
+}
